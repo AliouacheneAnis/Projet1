@@ -1,16 +1,26 @@
+/*
+  Titre      : Testeur RJ45
+  Auteur     : Anis Aliouachene
+  Date       : 28/01/2022
+  Description: Un microcontroleur qui teste si un cable RJ45 est fonctionnel ou non  
+  Version    : 0.0.1
+*/
+
+
 #include <Arduino.h>
-#include<Fil.h>
+#include<Cable.h>
 
-const int FILS_ORANGE_BLANC = 15;
-const int FILS_ORANGE = 2;
-const int FILS_VERT_BLANC = 4;
-const int FILS_VERT = 19;
+// Cote 1 OUTPUT
+const int FILS_ORANGE_BLANC = 2;
+const int FILS_ORANGE = 4;
+const int FILS_VERT_BLANC = 15;
+const int FILS_VERT = 5;
 const int FILS_BLUE_BLANC = 18;
-const int FILS_BLUE= 5;
-const int FILS_MARRON_BLANC = 21;
-const int FILS_MARRON = 22;
+const int FILS_BLUE= 19;
+const int FILS_MARRON_BLANC = 22;
+const int FILS_MARRON = 21;
 
-// fils 2 INPUT
+// Cote 2 INPUT
 const int FILS_ORANGE_BLANC_2= 32;
 const int FILS_ORANGE_2= 33;
 const int FILS_VERT_BLANC_2= 25;
@@ -20,10 +30,11 @@ const int FILS_BLUE_2= 26;
 const int FILS_MARRON_BLANC_2= 12;
 const int FILS_MARRON_2= 13;
 
-// Declaration deux objet de class fil 
-Fil Cote1(FILS_ORANGE_BLANC, FILS_ORANGE, FILS_VERT_BLANC, FILS_VERT, FILS_BLUE_BLANC, FILS_BLUE, FILS_MARRON_BLANC, FILS_MARRON); 
-Fil Cote2(FILS_ORANGE_BLANC_2, FILS_ORANGE, FILS_VERT_BLANC_2, FILS_VERT_2, FILS_BLUE_BLANC_2, FILS_BLUE_2, FILS_MARRON_BLANC_2, FILS_MARRON_2);
+// Declaration deux objet de class cable
+Cable Cote1(FILS_ORANGE_BLANC, FILS_ORANGE, FILS_VERT_BLANC, FILS_VERT, FILS_BLUE_BLANC, FILS_BLUE, FILS_MARRON_BLANC, FILS_MARRON); 
+Cable Cote2(FILS_ORANGE_BLANC_2, FILS_ORANGE, FILS_VERT_BLANC_2, FILS_VERT_2, FILS_BLUE_BLANC_2, FILS_BLUE_2, FILS_MARRON_BLANC_2, FILS_MARRON_2);
 
+// variable boolean pour fonctionnement  
 bool Fonctionnement; 
 
 void setup() {
