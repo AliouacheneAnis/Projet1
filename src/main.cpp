@@ -11,14 +11,14 @@
 #include<Cable.h>
 
 // Cote 1 OUTPUT
-const int FILS_ORANGE_BLANC = 2;
-const int FILS_ORANGE = 4;
-const int FILS_VERT_BLANC = 15;
-const int FILS_VERT = 5;
+const int FILS_ORANGE_BLANC = 15;
+const int FILS_ORANGE = 2;
+const int FILS_VERT_BLANC = 4;
+const int FILS_VERT = 19;
 const int FILS_BLUE_BLANC = 18;
-const int FILS_BLUE= 19;
-const int FILS_MARRON_BLANC = 22;
-const int FILS_MARRON = 21;
+const int FILS_BLUE= 5;
+const int FILS_MARRON_BLANC = 21;
+const int FILS_MARRON = 22;
 
 // Cote 2 INPUT
 const int FILS_ORANGE_BLANC_2= 32;
