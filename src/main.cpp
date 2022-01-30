@@ -11,31 +11,32 @@
 #include<Cable.h>
 
 // Cote 1 OUTPUT
-const int FILS_ORANGE_BLANC = 15;
-const int FILS_ORANGE = 2;
-const int FILS_VERT_BLANC = 4;
-const int FILS_VERT = 19;
-const int FILS_BLUE_BLANC = 18;
-const int FILS_BLUE= 5;
-const int FILS_MARRON_BLANC = 21;
-const int FILS_MARRON = 22;
+const int BROCHE_1 = 15;
+const int BROCHE_2 = 2;
+const int BROCHE_3 = 4;
+const int BROCHE_4 = 5;
+const int BROCHE_5 = 18;
+const int BROCHE_6 = 19;
+const int BROCHE_7 = 21;
+const int BROCHE_8 = 22;
 
 // Cote 2 INPUT
-const int FILS_ORANGE_BLANC_2= 32;
-const int FILS_ORANGE_2= 33;
-const int FILS_VERT_BLANC_2= 25;
-const int FILS_VERT_2= 14;
-const int FILS_BLUE_BLANC_2= 27;
-const int FILS_BLUE_2= 26;
-const int FILS_MARRON_BLANC_2= 12;
-const int FILS_MARRON_2= 13;
+const int BROCHE_1_2= 32;
+const int BROCHE_2_2= 33;
+const int BROCHE_3_2= 25;
+const int BROCHE_4_2= 26;
+const int BROCHE_5_2= 27;
+const int BROCHE_6_2= 14;
+const int BROCHE_7_2= 12;
+const int BROCHE_8_2= 13;
 
 // Declaration deux objet de class cable
-Cable Cote1(FILS_ORANGE_BLANC, FILS_ORANGE, FILS_VERT_BLANC, FILS_VERT, FILS_BLUE_BLANC, FILS_BLUE, FILS_MARRON_BLANC, FILS_MARRON); 
-Cable Cote2(FILS_ORANGE_BLANC_2, FILS_ORANGE, FILS_VERT_BLANC_2, FILS_VERT_2, FILS_BLUE_BLANC_2, FILS_BLUE_2, FILS_MARRON_BLANC_2, FILS_MARRON_2);
+Cable Cote1(BROCHE_1, BROCHE_2, BROCHE_3, BROCHE_4, BROCHE_5, BROCHE_6, BROCHE_7, BROCHE_8); 
+Cable Cote2(BROCHE_1_2, BROCHE_2_2, BROCHE_3_2, BROCHE_4_2, BROCHE_5_2, BROCHE_6_2, BROCHE_7_2, BROCHE_8_2);
 
 // variable boolean pour fonctionnement  
 bool Fonctionnement; 
+int Valeur1, Valeur2;
 
 void setup() {
   
@@ -47,52 +48,193 @@ void setup() {
 }
 
 void loop() {
+  
 
-  // Initialisation
-   Fonctionnement = true; 
+  // Initialisation 
+   Fonctionnement = true;
+
+  // Envoi et Reception des signal entre les broches 
+  Cote1.EnvoiSignal(BROCHE_1);
+  Serial.println(Valeur1);  
+  Serial.println(Valeur2); 
+  Serial.println("Debut");  
+ 
+
+  Valeur1 = Cote2.ReceipSignal(BROCHE_1_2);
+  Valeur2 = Cote2.ReceipSignal(BROCHE_3_2); 
+  Serial.println(Valeur1);  
+  Serial.println(Valeur2);  
+  delay(1000); 
    
-   // Envoi et Reception des signal entre les broches
-   Cote1.EnvoiSignal(FILS_ORANGE_BLANC); 
-   Cote2.ReceipSignal(FILS_ORANGE_BLANC_2); 
-   Fonctionnement = Cote2.TestReceipSignal(FILS_ORANGE_BLANC_2); 
+   if ( Valeur1 == 1){
+            
+            Serial.println("Le cable est de type Droit"); 
 
-   Cote1.EnvoiSignal(FILS_ORANGE); 
-   Cote2.ReceipSignal(FILS_ORANGE_2); 
-   Fonctionnement = Cote2.TestReceipSignal(FILS_ORANGE_2); 
+            Cote1.EnvoiSignal(BROCHE_2); 
+            Cote2.ReceipSignal(BROCHE_2_2); 
+            Fonctionnement= Cote2.TestReceipSignal(BROCHE_2_2);  
+            if (Fonctionnement)  
+              Serial.println("TEST 2 OK");
+            else 
+              Serial.println("TEST 2 Failed");
 
-   Cote1.EnvoiSignal(FILS_VERT_BLANC); 
-   Cote2.ReceipSignal(FILS_VERT_BLANC_2); 
-   Fonctionnement = Cote2.TestReceipSignal(FILS_VERT_BLANC_2); 
+            delay(1000);
 
-   Cote1.EnvoiSignal(FILS_VERT); 
-   Cote2.ReceipSignal(FILS_VERT_2);
-   Fonctionnement = Cote2.TestReceipSignal(FILS_VERT_2); 
+            Cote1.EnvoiSignal(BROCHE_3); 
+            Cote2.ReceipSignal(BROCHE_3_2); 
+            Fonctionnement= Cote2.TestReceipSignal(BROCHE_3_2); 
+            if (Fonctionnement)  
+              Serial.println("TEST 3 OK");
+            else 
+              Serial.println("TEST 3 Failed");
 
-   Cote1.EnvoiSignal(FILS_BLUE_BLANC); 
-   Cote2.ReceipSignal(FILS_BLUE_BLANC_2);
-   Fonctionnement = Cote2.TestReceipSignal(FILS_BLUE_BLANC_2);  
 
-   Cote1.EnvoiSignal(FILS_BLUE); 
-   Cote2.ReceipSignal(FILS_BLUE_2);
-   Fonctionnement = Cote2.TestReceipSignal(FILS_BLUE_2);  
-   
-   Cote1.EnvoiSignal(FILS_MARRON_BLANC); 
-   Cote2.ReceipSignal(FILS_MARRON_BLANC_2); 
-   Fonctionnement = Cote2.TestReceipSignal(FILS_MARRON_BLANC_2); 
+          delay(1000);
+          Cote1.EnvoiSignal(BROCHE_4); 
+          Cote2.ReceipSignal(BROCHE_4_2);
+          Fonctionnement= Cote2.TestReceipSignal(BROCHE_4_2); 
+          if (Fonctionnement) 
+              Serial.println("TEST 4 OK");
+          else 
+              Serial.println("TEST 4 Failed");
 
-   Cote1.EnvoiSignal(FILS_MARRON); 
-   Cote2.ReceipSignal(FILS_MARRON_2); 
-   Fonctionnement = Cote2.TestReceipSignal(FILS_MARRON_2); 
+          delay(1000);
+          Cote1.EnvoiSignal(BROCHE_5); 
+          Cote2.ReceipSignal(BROCHE_5_2);
+          Fonctionnement= Cote2.TestReceipSignal(BROCHE_5_2);     
+          if (Fonctionnement) 
+              Serial.println("TEST 5 OK");
+          else 
+              Serial.println("TEST 5 Failed");
 
-  // Affichage si le cable est fonctionnel 
-  if (Fonctionnement)
-  {
-    Serial.println("Le cable est fonctionnel");
-    delay(1000);
-  }
-  else {
-    Serial.println("Le cable n'est pas fonctionnel");
-    delay(1000);
-  }
+          delay(1000);
+          Cote1.EnvoiSignal(BROCHE_6); 
+          Cote2.ReceipSignal(BROCHE_6_2);
+          Fonctionnement= Cote2.TestReceipSignal(BROCHE_6_2);  
+          if (Fonctionnement) 
+             Serial.println("TEST 6 OK"); 
+          else 
+             Serial.println("TEST 6 Failed");
 
+          delay(1000);
+          Cote1.EnvoiSignal(BROCHE_7); 
+          Cote2.ReceipSignal(BROCHE_7_2); 
+          Fonctionnement= Cote2.TestReceipSignal(BROCHE_7_2);  
+          if (Fonctionnement) 
+            Serial.println("TEST 7 OK");
+          else 
+            Serial.println("TEST 7 Failed");
+
+          delay(1000);
+          Cote1.EnvoiSignal(BROCHE_8); 
+          Cote2.ReceipSignal(BROCHE_8_2); 
+          Fonctionnement= Cote2.TestReceipSignal(BROCHE_8_2); 
+          if (Fonctionnement) 
+            Serial.println("TEST 8 OK");
+          else 
+            Serial.println("TEST 8 Failed");   
+
+          delay(1000);
+               
+  } else if ( Valeur2 == 1){ 
+         
+
+         Serial.println("Le cable est de type croise");  
+          
+          Serial.println(Valeur1);  
+          Serial.println(Valeur2); 
+          delay(1000);
+
+          Cote1.EnvoiSignal(BROCHE_2); 
+          Cote2.ReceipSignal(BROCHE_6_2); 
+          Fonctionnement = Cote2.TestReceipSignal(BROCHE_6_2);  
+          if (Fonctionnement)  
+            Serial.println("TEST 2 OK");
+          else 
+            Serial.println("TEST 2 Failed");
+
+          Serial.println(Valeur1);  
+          Serial.println(Valeur2); 
+          delay(1000);
+          Cote1.EnvoiSignal(BROCHE_3); 
+          Cote2.ReceipSignal(BROCHE_1_2); 
+          Fonctionnement= Cote2.TestReceipSignal(BROCHE_1_2); 
+          if (Fonctionnement)  
+            Serial.println("TEST 3 OK");
+          else 
+            Serial.println("TEST 3 Failed");
+
+ 
+          Serial.println(Valeur1);  
+          Serial.println(Valeur2); 
+          delay(1000);
+          Cote1.EnvoiSignal(BROCHE_4); 
+          Cote2.ReceipSignal(BROCHE_4_2);
+          Fonctionnement= Cote2.TestReceipSignal(BROCHE_4_2); 
+          if (Fonctionnement) 
+              Serial.println("TEST 4 OK");
+          else 
+              Serial.println("TEST 4 Failed");
+
+
+          Serial.println(Valeur1);  
+          Serial.println(Valeur2); 
+          delay(1000);
+          Cote1.EnvoiSignal(BROCHE_5); 
+          Cote2.ReceipSignal(BROCHE_5_2);
+          Fonctionnement= Cote2.TestReceipSignal(BROCHE_5_2);     
+          if (Fonctionnement) 
+              Serial.println("TEST 5 OK");
+          else 
+              Serial.println("TEST 5 Failed");
+
+
+          Serial.println(Valeur1);  
+          Serial.println(Valeur2); 
+          delay(1000);
+          Cote1.EnvoiSignal(BROCHE_6); 
+          Cote2.ReceipSignal(BROCHE_2_2);
+          Fonctionnement= Cote2.TestReceipSignal(BROCHE_2_2);  
+          if (Fonctionnement) 
+             Serial.println("TEST 6 OK"); 
+          else 
+             Serial.println("TEST 6 Failed");
+            
+
+          Serial.println(Valeur1);  
+          Serial.println(Valeur2); 
+          delay(1000);
+          Cote1.EnvoiSignal(BROCHE_7); 
+          Cote2.ReceipSignal(BROCHE_7_2); 
+          Fonctionnement= Cote2.TestReceipSignal(BROCHE_7_2);  
+          if (Fonctionnement) 
+            Serial.println("TEST 7 OK");
+          else 
+            Serial.println("TEST 7 Failed");
+            
+
+          Serial.println(Valeur1);  
+          Serial.println(Valeur2); 
+          delay(1000);
+          
+          Cote1.EnvoiSignal(BROCHE_8); 
+          Cote2.ReceipSignal(BROCHE_8_2); 
+          Fonctionnement= Cote2.TestReceipSignal(BROCHE_8_2); 
+          if (Fonctionnement) 
+            Serial.println("TEST 8 OK");
+          else 
+            Serial.println("TEST 8 Failed"); 
+
+          Serial.println(Valeur1);  
+          Serial.println(Valeur2); 
+          delay(1000);
+   }
+
+  Valeur2 = Cote2.ReceipSignal(BROCHE_3_2);    
+  Serial.println(Valeur1);  
+  Serial.println(Valeur2); 
+  Serial.println("retest");
+  Serial.println("----------------------------------------------------");
+  Cote1.initialisation();
+   delay(2000);
 }

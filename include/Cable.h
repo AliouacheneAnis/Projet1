@@ -39,6 +39,8 @@ class Cable{
 
     // Fonction test signal 
     bool TestReceipSignal(int Broche);
+
+    void initialisation();
 };
 
     #endif 

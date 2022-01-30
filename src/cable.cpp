@@ -54,3 +54,15 @@
         else 
             return true; 
     };
+
+    void Cable::initialisation(){
+        
+        digitalWrite(this->Broche1, LOW);
+        digitalWrite(this->Broche2, LOW);
+        digitalWrite(this->Broche3, LOW);
+        digitalWrite(this->Broche4, LOW);
+        digitalWrite(this->Broche5, LOW);
+        digitalWrite(this->Broche6, LOW);
+        digitalWrite(this->Broche7, LOW);
+        digitalWrite(this->Broche8, LOW);
+    };
