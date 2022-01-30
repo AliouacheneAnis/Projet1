@@ -36,7 +36,7 @@ Cable Cote2(BROCHE_1_2, BROCHE_2_2, BROCHE_3_2, BROCHE_4_2, BROCHE_5_2, BROCHE_6
 
 // variable boolean pour fonctionnement  
 bool Fonctionnement; 
-int Valeur1, Valeur2;
+int Valeur1, Valeur2, Valeur3; 
 
 void setup() {
   
@@ -53,188 +53,346 @@ void loop() {
   // Initialisation 
    Fonctionnement = true;
 
+
   // Envoi et Reception des signal entre les broches 
   Cote1.EnvoiSignal(BROCHE_1);
-  Serial.println(Valeur1);  
-  Serial.println(Valeur2); 
-  Serial.println("Debut");  
- 
-
-  Valeur1 = Cote2.ReceipSignal(BROCHE_1_2);
-  Valeur2 = Cote2.ReceipSignal(BROCHE_3_2); 
-  Serial.println(Valeur1);  
-  Serial.println(Valeur2);  
+  Valeur1 = Cote2.ReceipSignal(BROCHE_1_2); 
+  Valeur2 = Cote2.ReceipSignal(BROCHE_1_2);
+  Valeur3 = Cote2.ReceipSignal(BROCHE_3_2);
   delay(1000); 
    
-   if ( Valeur1 == 1){
+   if (Valeur1 == 1){
             
-            Serial.println("Le cable est de type Droit"); 
+            Serial.println("TEST 1 OK");
+            Cote1.setTypeCable("Droit");
+            Cote1.setNormeCable('B');
 
             Cote1.EnvoiSignal(BROCHE_2); 
             Cote2.ReceipSignal(BROCHE_2_2); 
             Fonctionnement= Cote2.TestReceipSignal(BROCHE_2_2);  
-            if (Fonctionnement)  
-              Serial.println("TEST 2 OK");
-            else 
-              Serial.println("TEST 2 Failed");
 
-            delay(1000);
+            if (Fonctionnement) 
+            {
+                  Serial.println("TEST 2 OK");
+                  delay(1000);
 
-            Cote1.EnvoiSignal(BROCHE_3); 
-            Cote2.ReceipSignal(BROCHE_3_2); 
-            Fonctionnement= Cote2.TestReceipSignal(BROCHE_3_2); 
-            if (Fonctionnement)  
-              Serial.println("TEST 3 OK");
-            else 
-              Serial.println("TEST 3 Failed");
+                  Cote1.EnvoiSignal(BROCHE_3); 
+                  Cote2.ReceipSignal(BROCHE_3_2); 
+                  Fonctionnement= Cote2.TestReceipSignal(BROCHE_3_2); 
+                  
+                  if (Fonctionnement) {
 
+                        Serial.println("TEST 3 OK");
+                        delay(1000);
+                        Cote1.EnvoiSignal(BROCHE_4); 
+                        Cote2.ReceipSignal(BROCHE_4_2);
+                        Fonctionnement= Cote2.TestReceipSignal(BROCHE_4_2); 
 
-          delay(1000);
-          Cote1.EnvoiSignal(BROCHE_4); 
-          Cote2.ReceipSignal(BROCHE_4_2);
-          Fonctionnement= Cote2.TestReceipSignal(BROCHE_4_2); 
-          if (Fonctionnement) 
-              Serial.println("TEST 4 OK");
-          else 
-              Serial.println("TEST 4 Failed");
+                        if (Fonctionnement) 
+                        {
+                            Serial.println("TEST 4 OK");
+                            delay(1000);
+                            Cote1.EnvoiSignal(BROCHE_5); 
+                            Cote2.ReceipSignal(BROCHE_5_2);
+                            Fonctionnement= Cote2.TestReceipSignal(BROCHE_5_2);    
 
-          delay(1000);
-          Cote1.EnvoiSignal(BROCHE_5); 
-          Cote2.ReceipSignal(BROCHE_5_2);
-          Fonctionnement= Cote2.TestReceipSignal(BROCHE_5_2);     
-          if (Fonctionnement) 
-              Serial.println("TEST 5 OK");
-          else 
-              Serial.println("TEST 5 Failed");
+                            if (Fonctionnement) {
 
-          delay(1000);
-          Cote1.EnvoiSignal(BROCHE_6); 
-          Cote2.ReceipSignal(BROCHE_6_2);
-          Fonctionnement= Cote2.TestReceipSignal(BROCHE_6_2);  
-          if (Fonctionnement) 
-             Serial.println("TEST 6 OK"); 
-          else 
-             Serial.println("TEST 6 Failed");
+                                Serial.println("TEST 5 OK");
+                                delay(1000);
+                                Cote1.EnvoiSignal(BROCHE_6); 
+                                Cote2.ReceipSignal(BROCHE_6_2);
+                                Fonctionnement= Cote2.TestReceipSignal(BROCHE_6_2);  
 
-          delay(1000);
-          Cote1.EnvoiSignal(BROCHE_7); 
-          Cote2.ReceipSignal(BROCHE_7_2); 
-          Fonctionnement= Cote2.TestReceipSignal(BROCHE_7_2);  
-          if (Fonctionnement) 
-            Serial.println("TEST 7 OK");
-          else 
-            Serial.println("TEST 7 Failed");
+                                if (Fonctionnement) {
+                                     Serial.println("TEST 6 OK"); 
+                                    delay(1000);
+                                    Cote1.EnvoiSignal(BROCHE_7); 
+                                    Cote2.ReceipSignal(BROCHE_7_2); 
+                                    Fonctionnement= Cote2.TestReceipSignal(BROCHE_7_2);  
 
-          delay(1000);
-          Cote1.EnvoiSignal(BROCHE_8); 
-          Cote2.ReceipSignal(BROCHE_8_2); 
-          Fonctionnement= Cote2.TestReceipSignal(BROCHE_8_2); 
-          if (Fonctionnement) 
-            Serial.println("TEST 8 OK");
-          else 
-            Serial.println("TEST 8 Failed");   
+                                    if (Fonctionnement) {
 
-          delay(1000);
-               
+                                         Serial.println("TEST 7 OK");
+                                         delay(1000);
+                                         Cote1.EnvoiSignal(BROCHE_8); 
+                                         Cote2.ReceipSignal(BROCHE_8_2); 
+                                         Fonctionnement= Cote2.TestReceipSignal(BROCHE_8_2);
+
+                                        if (Fonctionnement){
+                                            Serial.println("TEST 8 OK");
+                                            Serial.println("Le cable est Fonctionnel"); 
+                                            Serial.print("Le type de Cable est : "); 
+                                            Serial.println(Cote1.getTypeCable());
+                                            Serial.print("La norme de Cable est : "); 
+                                            Serial.println(Cote1.getNormeCable());
+                                        } 
+                                        else {
+                                           Serial.println("TEST 8 Failed"); 
+                                           Serial.println("Le cable n'est pas Fonctionnel"); 
+                                        }        
+
+                                    delay(1000);
+                                    }
+                                    else {
+                                         Serial.println("TEST 7 Failed");
+                                         Serial.println("Le cable n'est pas Fonctionnel"); 
+                                    }
+                                      
+                                }
+                                else {
+                                  Serial.println("TEST 6 Failed");
+                                  Serial.println("Le cable n'est pas Fonctionnel"); 
+                                }
+
+                            } 
+                            else{
+                              Serial.println("TEST 5 Failed");
+                              Serial.println("Le cable n'est pas Fonctionnel"); 
+                            }             
+                        }
+                        else {
+                          Serial.println("TEST 4 Failed");
+                          Serial.println("Le cable n'est pas Fonctionnel"); 
+                        } 
+                         
+                  } 
+                  else {
+                    Serial.println("TEST 3 Failed");
+                    Serial.printf("Le cable n'est pas fonctionnel");
+                  }
+            }
+            else {
+                    Serial.println("TEST 2 Failed");
+                    Serial.println("Le cable n'est pas fonctionnel");
+            }
+
+/*
+  // Test si le cable est Droit Norme A 
   } else if ( Valeur2 == 1){ 
          
+            Serial.println("TEST 1 OK");
+            Cote1.setTypeCable("Croise");
+            Cote1.setNormeCable('A');
 
-         Serial.println("Le cable est de type croise");  
-          
-          Serial.println(Valeur1);  
-          Serial.println(Valeur2); 
+            Cote1.EnvoiSignal(BROCHE_2); 
+            Cote2.ReceipSignal(BROCHE_3_2); 
+            Fonctionnement= Cote2.TestReceipSignal(BROCHE_3_2);  
+
+            if (Fonctionnement) 
+            {
+                  Serial.println("TEST 2 OK");
+                  delay(1000);
+
+                  Cote1.EnvoiSignal(BROCHE_3); 
+                  Cote2.ReceipSignal(BROCHE_3_2); 
+                  Fonctionnement= Cote2.TestReceipSignal(BROCHE_3_2); 
+                  
+                  if (Fonctionnement) {
+
+                        Serial.println("TEST 3 OK");
+                        delay(1000);
+                        Cote1.EnvoiSignal(BROCHE_4); 
+                        Cote2.ReceipSignal(BROCHE_4_2);
+                        Fonctionnement= Cote2.TestReceipSignal(BROCHE_4_2); 
+
+                        if (Fonctionnement) 
+                        {
+                            Serial.println("TEST 4 OK");
+                            delay(1000);
+                            Cote1.EnvoiSignal(BROCHE_5); 
+                            Cote2.ReceipSignal(BROCHE_5_2);
+                            Fonctionnement= Cote2.TestReceipSignal(BROCHE_5_2);    
+
+                            if (Fonctionnement) {
+
+                                Serial.println("TEST 5 OK");
+                                delay(1000);
+                                Cote1.EnvoiSignal(BROCHE_6); 
+                                Cote2.ReceipSignal(BROCHE_6_2);
+                                Fonctionnement= Cote2.TestReceipSignal(BROCHE_6_2);  
+
+                                if (Fonctionnement) {
+                                     Serial.println("TEST 6 OK"); 
+                                    delay(1000);
+                                    Cote1.EnvoiSignal(BROCHE_7); 
+                                    Cote2.ReceipSignal(BROCHE_7_2); 
+                                    Fonctionnement= Cote2.TestReceipSignal(BROCHE_7_2);  
+
+                                    if (Fonctionnement) {
+
+                                         Serial.println("TEST 7 OK");
+                                         delay(1000);
+                                         Cote1.EnvoiSignal(BROCHE_8); 
+                                         Cote2.ReceipSignal(BROCHE_8_2); 
+                                         Fonctionnement= Cote2.TestReceipSignal(BROCHE_8_2);
+
+                                        if (Fonctionnement){
+                                            Serial.println("TEST 8 OK");
+                                            Serial.println("Le cable n'est Fonctionnel"); 
+                                            Serial.print("Le type de Cable est : "); 
+                                            Serial.println(Cote1.getTypeCable());
+                                            Serial.print("La norme de Cable est : "); 
+                                            Serial.println(Cote1.getNormeCable());
+                                        } 
+                                        else {
+                                           Serial.println("TEST 8 Failed"); 
+                                           Serial.println("Le cable n'est pas Fonctionnel"); 
+                                        }
+                                              
+
+                                    delay(1000);
+                                    }
+                                    else {
+                                         Serial.println("TEST 7 Failed");
+                                         Serial.println("Le cable n'est pas Fonctionnel"); 
+                                    }
+                                      
+                                }
+                                else {
+                                  Serial.println("TEST 6 Failed");
+                                  Serial.println("Le cable n'est pas Fonctionnel"); 
+                                }
+
+                            } 
+                            else{
+                              Serial.println("TEST 5 Failed");
+                              Serial.println("Le cable n'est pas Fonctionnel"); 
+                            }             
+                        }
+                        else {
+                          Serial.println("TEST 4 Failed");
+                          Serial.println("Le cable n'est pas Fonctionnel"); 
+                        } 
+                         
+                  } 
+                  else {
+                    Serial.println("TEST 3 Failed");
+                    Serial.printf("Le cable n'est pas fonctionnel");
+                  }
+            }
+            else {
+                    Serial.println("TEST 2 Failed");
+                    Serial.println("Le cable n'est pas fonctionnel");
+            }
+
           delay(1000);
+*/
 
-          Cote1.EnvoiSignal(BROCHE_2); 
-          Cote2.ReceipSignal(BROCHE_6_2); 
-          Fonctionnement = Cote2.TestReceipSignal(BROCHE_6_2);  
-          if (Fonctionnement)  
-            Serial.println("TEST 2 OK");
-          else 
-            Serial.println("TEST 2 Failed");
+  // Test si le cable est croise 
+  }else if (Valeur3 == 1){
+        
+            Cote1.setTypeCable("Croise");
+            Serial.println("TEST 1 OK");
 
-          Serial.println(Valeur1);  
-          Serial.println(Valeur2); 
+            Cote1.EnvoiSignal(BROCHE_2); 
+            Cote2.ReceipSignal(BROCHE_6_2); 
+            Fonctionnement= Cote2.TestReceipSignal(BROCHE_6_2);  
+
+            if (Fonctionnement) 
+            {
+                  Serial.println("TEST 2 OK");
+                  delay(1000);
+
+                  Cote1.EnvoiSignal(BROCHE_3); 
+                  Cote2.ReceipSignal(BROCHE_1_2); 
+                  Fonctionnement= Cote2.TestReceipSignal(BROCHE_1_2); 
+                  
+                  if (Fonctionnement) {
+
+                        Serial.println("TEST 3 OK");
+                        delay(1000);
+                        Cote1.EnvoiSignal(BROCHE_4); 
+                        Cote2.ReceipSignal(BROCHE_4_2);
+                        Fonctionnement= Cote2.TestReceipSignal(BROCHE_4_2); 
+
+                        if (Fonctionnement) 
+                        {
+                            Serial.println("TEST 4 OK");
+                            delay(1000);
+                            Cote1.EnvoiSignal(BROCHE_5); 
+                            Cote2.ReceipSignal(BROCHE_5_2);
+                            Fonctionnement= Cote2.TestReceipSignal(BROCHE_5_2);    
+
+                            if (Fonctionnement) {
+
+                                Serial.println("TEST 5 OK");
+                                delay(1000);
+                                Cote1.EnvoiSignal(BROCHE_6); 
+                                Cote2.ReceipSignal(BROCHE_2_2);
+                                Fonctionnement= Cote2.TestReceipSignal(BROCHE_2_2);  
+
+                                if (Fonctionnement) {
+                                     Serial.println("TEST 6 OK"); 
+                                    delay(1000);
+                                    Cote1.EnvoiSignal(BROCHE_7); 
+                                    Cote2.ReceipSignal(BROCHE_7_2); 
+                                    Fonctionnement= Cote2.TestReceipSignal(BROCHE_7_2);  
+
+                                    if (Fonctionnement) {
+
+                                         Serial.println("TEST 7 OK");
+                                         delay(1000);
+                                         Cote1.EnvoiSignal(BROCHE_8); 
+                                         Cote2.ReceipSignal(BROCHE_8_2); 
+                                         Fonctionnement= Cote2.TestReceipSignal(BROCHE_8_2);
+
+                                        if (Fonctionnement){
+                                            Serial.println("TEST 8 OK");
+                                            Serial.println("Le cable est Fonctionnel"); 
+                                            Serial.print("Le type de Cable est : "); 
+                                            Serial.println(Cote1.getTypeCable());
+                                        } 
+                                        else {
+                                           Serial.println("TEST 8 Failed"); 
+                                           Serial.println("Le cable n'est pas Fonctionnel"); 
+                                        }
+                                              
+
+                                    delay(1000);
+                                    }
+                                    else {
+                                         Serial.println("TEST 7 Failed");
+                                         Serial.println("Le cable n'est pas Fonctionnel"); 
+                                    }
+                                      
+                                }
+                                else {
+                                  Serial.println("TEST 6 Failed");
+                                  Serial.println("Le cable n'est pas Fonctionnel"); 
+                                }
+
+                            } 
+                            else{
+                              Serial.println("TEST 5 Failed");
+                              Serial.println("Le cable n'est pas Fonctionnel"); 
+                            }             
+                        }
+                        else {
+                          Serial.println("TEST 4 Failed");
+                          Serial.println("Le cable n'est pas Fonctionnel"); 
+                        } 
+                         
+                  } 
+                  else {
+                    Serial.println("TEST 3 Failed");
+                    Serial.printf("Le cable n'est pas fonctionnel");
+                  }
+            }
+            else {
+                    Serial.println("TEST 2 Failed");
+                    Serial.println("Le cable n'est pas fonctionnel");
+            }
+
           delay(1000);
-          Cote1.EnvoiSignal(BROCHE_3); 
-          Cote2.ReceipSignal(BROCHE_1_2); 
-          Fonctionnement= Cote2.TestReceipSignal(BROCHE_1_2); 
-          if (Fonctionnement)  
-            Serial.println("TEST 3 OK");
-          else 
-            Serial.println("TEST 3 Failed");
-
- 
-          Serial.println(Valeur1);  
-          Serial.println(Valeur2); 
-          delay(1000);
-          Cote1.EnvoiSignal(BROCHE_4); 
-          Cote2.ReceipSignal(BROCHE_4_2);
-          Fonctionnement= Cote2.TestReceipSignal(BROCHE_4_2); 
-          if (Fonctionnement) 
-              Serial.println("TEST 4 OK");
-          else 
-              Serial.println("TEST 4 Failed");
-
-
-          Serial.println(Valeur1);  
-          Serial.println(Valeur2); 
-          delay(1000);
-          Cote1.EnvoiSignal(BROCHE_5); 
-          Cote2.ReceipSignal(BROCHE_5_2);
-          Fonctionnement= Cote2.TestReceipSignal(BROCHE_5_2);     
-          if (Fonctionnement) 
-              Serial.println("TEST 5 OK");
-          else 
-              Serial.println("TEST 5 Failed");
-
-
-          Serial.println(Valeur1);  
-          Serial.println(Valeur2); 
-          delay(1000);
-          Cote1.EnvoiSignal(BROCHE_6); 
-          Cote2.ReceipSignal(BROCHE_2_2);
-          Fonctionnement= Cote2.TestReceipSignal(BROCHE_2_2);  
-          if (Fonctionnement) 
-             Serial.println("TEST 6 OK"); 
-          else 
-             Serial.println("TEST 6 Failed");
-            
-
-          Serial.println(Valeur1);  
-          Serial.println(Valeur2); 
-          delay(1000);
-          Cote1.EnvoiSignal(BROCHE_7); 
-          Cote2.ReceipSignal(BROCHE_7_2); 
-          Fonctionnement= Cote2.TestReceipSignal(BROCHE_7_2);  
-          if (Fonctionnement) 
-            Serial.println("TEST 7 OK");
-          else 
-            Serial.println("TEST 7 Failed");
-            
-
-          Serial.println(Valeur1);  
-          Serial.println(Valeur2); 
-          delay(1000);
-          
-          Cote1.EnvoiSignal(BROCHE_8); 
-          Cote2.ReceipSignal(BROCHE_8_2); 
-          Fonctionnement= Cote2.TestReceipSignal(BROCHE_8_2); 
-          if (Fonctionnement) 
-            Serial.println("TEST 8 OK");
-          else 
-            Serial.println("TEST 8 Failed"); 
-
-          Serial.println(Valeur1);  
-          Serial.println(Valeur2); 
-          delay(1000);
-   }
-
-  Valeur2 = Cote2.ReceipSignal(BROCHE_3_2);    
-  Serial.println(Valeur1);  
-  Serial.println(Valeur2); 
-  Serial.println("retest");
-  Serial.println("----------------------------------------------------");
+        
+  } else {
+        Serial.println("TEST 1 Failed");
+        Serial.println("Le cable n'est pas fonctionnel");
+  }
+  
   Cote1.initialisation();
-   delay(2000);
+  Serial.println("----------------------------------------------------");
+  delay(2000);
 }
+

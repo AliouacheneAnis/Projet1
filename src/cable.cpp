@@ -39,6 +39,22 @@
         pinMode(Broche8, OUTPUT);
     };
 
+    void Cable::setTypeCable(String Type){
+         TypeCable = Type; 
+    };
+    
+    String Cable::getTypeCable(){
+        return TypeCable; 
+    };
+    
+    void Cable::setNormeCable(char Norme){
+        NormeCable = Norme;
+    };
+
+    char Cable::getNormeCable(){
+        return NormeCable;
+    };
+
     void Cable::EnvoiSignal( int Broche ){
       digitalWrite(Broche, HIGH); 
     };
@@ -66,3 +82,4 @@
         digitalWrite(this->Broche7, LOW);
         digitalWrite(this->Broche8, LOW);
     };
+

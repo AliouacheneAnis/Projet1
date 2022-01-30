@@ -1,11 +1,17 @@
+#include<Arduino.h>
+#include<string.h>
+
 #ifndef CABLE_H
    #define CABLE_H
 
 class Cable{
 
     // Declaration des attribue
+
     private: 
         int Broche1, Broche2, Broche3, Broche4, Broche5, Broche6, Broche7, Broche8; 
+        String TypeCable; 
+        char NormeCable;
 
     public : 
     
@@ -29,6 +35,13 @@ class Cable{
     // Fonction setup input 
     void InputMode();
 
+    void setTypeCable(String Type);
+
+    String getTypeCable();
+
+    void setNormeCable(char Norme);
+    char getNormeCable();
+
     // Fonction setup Output 
     void OutputMode();
     // Fonction envoi signal 
@@ -41,6 +54,7 @@ class Cable{
     bool TestReceipSignal(int Broche);
 
     void initialisation();
+
 };
 
     #endif 
