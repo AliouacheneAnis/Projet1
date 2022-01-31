@@ -35,7 +35,7 @@ Cable Cote1(BROCHE_1, BROCHE_2, BROCHE_3, BROCHE_4, BROCHE_5, BROCHE_6, BROCHE_7
 Cable Cote2(BROCHE_1_2, BROCHE_2_2, BROCHE_3_2, BROCHE_4_2, BROCHE_5_2, BROCHE_6_2, BROCHE_7_2, BROCHE_8_2);
 
 //Variable pour tester quelle broche recois le signal 
-int Valeur1, Valeur2, Valeur3; 
+int Valeur1, Valeur2;
 
 // variable boolean pour fonctionnement  
 bool Fonctionnement; 
