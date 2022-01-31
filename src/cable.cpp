@@ -1,7 +1,18 @@
 #include<Cable.h>
 #include<Arduino.h>
     
-    // constrecteur 
+    /**
+     * @brief Construct a new Cable:: Cable object
+     * 
+     * @param Broche1 
+     * @param Broche2 
+     * @param Broche3 
+     * @param Broche4 
+     * @param Broche5 
+     * @param Broche6 
+     * @param Broche7 
+     * @param Broche8 
+     */
     Cable::Cable(int Broche1, int Broche2, int Broche3, int Broche4, int Broche5, int Broche6, int Broche7, int Broche8){
 
         this->Broche1 = Broche1;
@@ -12,6 +23,23 @@
         this->Broche6 = Broche6;
         this->Broche7 = Broche7;
         this->Broche8 = Broche8;
+    };
+    
+    // Getters and setters
+    void Cable::setTypeCable(String Type){
+         TypeCable = Type; 
+    };
+    
+    String Cable::getTypeCable(){
+        return TypeCable; 
+    };
+    
+    void Cable::setNormeCable(char Norme){
+        NormeCable = Norme;
+    };
+
+    char Cable::getNormeCable(){
+        return NormeCable;
     };
 
     // Fonctions 
@@ -38,22 +66,7 @@
         pinMode(Broche7, OUTPUT);
         pinMode(Broche8, OUTPUT);
     };
-
-    void Cable::setTypeCable(String Type){
-         TypeCable = Type; 
-    };
-    
-    String Cable::getTypeCable(){
-        return TypeCable; 
-    };
-    
-    void Cable::setNormeCable(char Norme){
-        NormeCable = Norme;
-    };
-
-    char Cable::getNormeCable(){
-        return NormeCable;
-    };
+   
 
     void Cable::EnvoiSignal( int Broche ){
       digitalWrite(Broche, HIGH); 
